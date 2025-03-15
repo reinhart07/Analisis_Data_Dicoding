@@ -1,10 +1,15 @@
 
 import streamlit as st
 import pandas as pd
+import os 
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from datetime import datetime
+
+
+st.write("Current directory:", os.getcwd())  # Cek direktori kerja
+st.write("Files in directory:", os.listdir())  # Cek file yang ada
 
 # Configure plots to avoid warnings
 plt.rcParams['figure.max_open_warning'] = 25
@@ -20,7 +25,6 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     try:
-        # Load datasets - adjust paths as needed
         orders = pd.read_csv('orders_dataset.csv')
         payments = pd.read_csv('order_payments_dataset.csv')
         reviews = pd.read_csv('order_reviews_dataset.csv')
@@ -28,6 +32,9 @@ def load_data():
     except Exception as e:
         st.error(f"Error loading data: {e}")
         return None, None, None
+
+# Panggil fungsi untuk memuat data
+orders, payments, reviews = load_data()
 
 # Title and introduction
 st.title("📊 E-Commerce Data Analysis Dashboard")
