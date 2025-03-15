@@ -37,16 +37,10 @@ if orders is not None and payments is not None and reviews is not None:
     filtered_orders = orders[(orders["order_purchase_timestamp"] >= start_date) & (orders["order_purchase_timestamp"] <= end_date)]
 
     # Filter Metode Pembayaran
-payment_options = ["All"] + payments["payment_type"].dropna().unique().tolist()
-selected_payment = st.sidebar.selectbox("Payment Method", payment_options)
+    payment_options = ["All"] + list(payments["payment_type"].unique())
+    selected_payment = st.sidebar.selectbox("Payment Method", payment_options)
+    filtered_payments = payments if selected_payment == "All" else payments[payments["payment_type"] == selected_payment]
 
-    # Filter data berdasarkan metode pembayaran yang dipilih
-    if selected_payment == "All":
-        filtered_payments = payments.copy()
-    elif selected_payment in payments["payment_type"].values:
-        filtered_payments = payments[payments["payment_type"].str.lower().str.strip() == selected_payment.lower()]
-    else:
-        filtered_payments = payments.iloc[0:0]
     # **3️⃣ Visualisasi Metode Pembayaran**
     if not filtered_payments.empty:
         st.subheader("Payment Method Distribution")
