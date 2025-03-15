@@ -9,7 +9,7 @@ import numpy as np
 st.set_page_config(page_title="E-Commerce Analysis Dashboard", page_icon="📊", layout="wide")
 
 # Page title and description
-st.title("E-Commerce Data Analysis Dashboard")
+st.title("📊 E-Commerce Data Analysis Dashboard")
 st.markdown("This dashboard provides insights into e-commerce operations including payment methods, delivery performance, and customer satisfaction metrics.")
 
 # **1️⃣ Load Dataset dengan Cache**
