@@ -5,5 +5,5 @@
 - python -m pip install -r requirements.txt
 
 
-#Run Streamlit app
+# Run Streamlit app
 streamlit run dashboard.py
